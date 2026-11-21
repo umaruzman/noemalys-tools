@@ -27,8 +27,6 @@ header, footer { border-bottom: 1px solid var(--line); }
 .main { flex: 1; padding-block: 64px 34px; }
 h1 { margin: 0; font: 600 clamp(2.5rem, 6.5vw, 5.4rem)/1.02 var(--display); letter-spacing: -.075em; }
 footer { border: 0; border-top: 1px solid var(--line); color: var(--slate); }
-.toolLink { margin-top: 32px; display: grid; gap: 6px; padding: 26px; border: 1px solid var(--line); border-radius: 14px; background: #fff; max-width: 480px; text-decoration: none; }
-.toolLink:hover { border-color: var(--aegean); }
 @media (max-width: 580px) {
   .shell { width: calc(100% - 32px); }
   .main { padding-top: 38px; }

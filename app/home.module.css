@@ -1,0 +1,71 @@
+.main { flex: 1; }
+.hero {
+  background: var(--deep);
+  color: var(--mist);
+  padding-block: clamp(2.75rem, 6vw, 5.25rem);
+}
+.heroGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  align-items: center;
+  gap: clamp(1.5rem, 5vw, 4.5rem);
+}
+.copy h1 { font-size: clamp(2.75rem, 6vw, 5rem); }
+.copy h1 span { color: var(--ember); }
+.copy p {
+  max-width: 29ch;
+  margin: 1.2rem 0 1.65rem;
+  color: var(--foam);
+  font-size: clamp(1.04rem, 1.8vw, 1.24rem);
+}
+.launch, .privacy { display: flex; align-items: center; gap: .6rem; }
+.launch {
+  width: fit-content;
+  min-height: 3.1rem;
+  padding: .7rem 1rem;
+  border-radius: .45rem;
+  background: var(--ember);
+  color: var(--deep);
+  font-weight: 600;
+  text-decoration: none;
+}
+.launch:hover { background: #ff7954; }
+.launch:focus-visible { outline-color: var(--foam); }
+.privacy { margin-top: 1rem; color: var(--foam); font-size: .9rem; }
+.art {
+  position: relative;
+  padding: 11px;
+  border: 1px solid #3b625f;
+  background: var(--aegean);
+}
+.art::after {
+  content: '';
+  position: absolute;
+  right: -1px;
+  bottom: -1px;
+  width: 26px;
+  height: 26px;
+  border: solid var(--ember);
+  border-width: 0 2px 2px 0;
+  pointer-events: none;
+}
+.art img { display: block; width: 100%; height: auto; }
+.features {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding: 0;
+  margin-block: 0;
+}
+.features li { display: flex; gap: 1rem; padding: 1.7rem; }
+.features li:first-child { padding-left: 0; }
+.features li + li { border-left: 1px solid var(--line); }
+.features svg { flex: 0 0 auto; margin-top: .13rem; }
+.features h2 { margin: 0; font: 600 1rem var(--display); letter-spacing: -.03em; }
+.features p { margin: .35rem 0 0; color: var(--slate); }
+@media (max-width: 740px) {
+  .heroGrid, .features { grid-template-columns: minmax(0, 1fr); }
+  .art { max-width: 34rem; }
+  .features li { padding: 1.15rem 0; }
+  .features li + li { border-left: 0; border-top: 1px solid var(--line); }
+}
