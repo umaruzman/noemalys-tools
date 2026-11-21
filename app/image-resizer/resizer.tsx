@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { Archive, Bookmark, Download, FolderOpen, Images, Scan, ShieldCheck, SlidersHorizontal, Upload, X } from 'lucide-react';
 import { zip } from 'fflate';
 import type { Format, Settings } from './image.worker';
 import s from './resizer.module.css';
@@ -137,7 +138,7 @@ export default function Resizer() {
   return <form onSubmit={event => { event.preventDefault(); if (!busy && rows.length) void processBatch(); }}>
     <div className={s.workspace}>
       <section className={s.images} aria-labelledby="images">
-        <div className={s.sectionHead}><h2 id="images">Images</h2><span>{rows.length} selected</span></div>
+        <div className={s.sectionHead}><h2 id="images"><Images aria-hidden="true" /> Images</h2><span>{rows.length} selected</span></div>
         <div className={`${s.drop} ${dragging ? s.dragging : ''}`}
           onDragOver={event => { event.preventDefault(); if (!busy) setDragging(true); }}
           onDragLeave={() => setDragging(false)}
@@ -146,13 +147,14 @@ export default function Resizer() {
             setDragging(false);
             if (!busy) addFiles(event.dataTransfer.files);
           }}>
-          <div className={s.picture} aria-hidden="true"><i /></div>
+          <img className={s.illustration} src="/resize-illustration.webp" width="300" height="200" alt="" />
           <strong>Drop images here</strong>
           <p>JPEG, PNG or WebP</p>
           <input hidden ref={picker} type="file" multiple accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
             onChange={event => { if (event.target.files) addFiles(event.target.files); event.target.value = ''; }} />
-          <button type="button" className={s.secondary} disabled={busy} onClick={() => picker.current?.click()}>Choose files</button>
+          <button type="button" className={s.secondary} disabled={busy} onClick={() => picker.current?.click()}><Upload aria-hidden="true" /> Choose files</button>
         </div>
+        <p className={s.privacy}><ShieldCheck aria-hidden="true" /> Images stay on your device</p>
         {rows.length > 0 && <ul className={s.files}>
           {rows.map((row, index) => <li key={row.url}>
             <img src={row.url} alt="" width="44" height="44" />
@@ -161,13 +163,13 @@ export default function Resizer() {
               {row.result?.overLimit && <span className={s.warning}>Above target size</span>}
               {row.error && <span className={s.warning}>{row.error}</span>}
             </div>
-            {row.result && <button type="button" disabled={busy} onClick={() => row.result && download(row.result.blob, row.name)} aria-label={`Download ${row.name}`}>Save</button>}
-            <button type="button" disabled={busy} onClick={() => remove(row)} aria-label={`Remove image ${index + 1}: ${row.file.name}`}>×</button>
+            {row.result && <button type="button" disabled={busy} onClick={() => row.result && download(row.result.blob, row.name)} aria-label={`Download ${row.name}`}><Download aria-hidden="true" /></button>}
+            <button type="button" disabled={busy} onClick={() => remove(row)} aria-label={`Remove image ${index + 1}: ${row.file.name}`}><X aria-hidden="true" /></button>
           </li>)}
         </ul>}
       </section>
       <section className={s.settings} aria-labelledby="settings">
-        <div className={s.sectionHead}><h2 id="settings">Output settings</h2></div>
+        <div className={s.sectionHead}><h2 id="settings"><SlidersHorizontal aria-hidden="true" /> Output settings</h2></div>
         <fieldset disabled={busy}>
           <div className={s.dimensions}>
             <label>Max width <input type="number" min="1" max="8192" required value={settings.width || ''} onChange={event => setSettings({ ...settings, width: Number(event.target.value) })} /></label>
@@ -184,11 +186,11 @@ export default function Resizer() {
             <input type="number" min="1" max="100000" value={settings.targetKB || ''} placeholder="KB per image" onChange={event => setSettings({ ...settings, targetKB: Number(event.target.value) })} />
           </label>
           <p className={s.note}>Quality can be reduced for JPEG and WebP to help reach the target.</p>
-          <div className={s.presets}><button type="button" className={s.secondary} onClick={() => preset('save')}>Save preset</button>
-            {hasPreset && <button type="button" className={s.secondary} onClick={() => preset('load')}>Load preset</button>}</div>
+          <div className={s.presets}><button type="button" className={s.secondary} onClick={() => preset('save')}><Bookmark aria-hidden="true" /> Save preset</button>
+            {hasPreset && <button type="button" className={s.secondary} onClick={() => preset('load')}><FolderOpen aria-hidden="true" /> Load preset</button>}</div>
         </fieldset>
-        <button className={s.primary} type="submit" disabled={!rows.length || busy}>Process images</button>
-        {count > 0 && <button className={s.zip} type="button" disabled={busy} onClick={downloadZip}>Download ZIP ({count})</button>}
+        <button className={s.primary} type="submit" disabled={!rows.length || busy}><Scan aria-hidden="true" /> Process images</button>
+        {count > 0 && <button className={s.zip} type="button" disabled={busy} onClick={downloadZip}><Archive aria-hidden="true" /> Download ZIP ({count})</button>}
       </section>
     </div>
     <p className={s.status} role="status">{status}</p>

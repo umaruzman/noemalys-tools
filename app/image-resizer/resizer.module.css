@@ -1,18 +1,16 @@
-.intro { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; margin-bottom: 42px; }
+.intro { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; margin-bottom: 34px; }
 .intro h1 span { color: var(--ember); }
-.intro p { margin: 0 0 4px; font-size: 1.125rem; color: var(--slate); }
+.intro p { margin: 0 0 4px; max-width: 26ch; font-size: 1.125rem; color: var(--slate); }
 .workspace { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(300px, 1fr); gap: 18px; align-items: start; }
 .images, .settings { padding: 22px; border: 1px solid var(--line); border-radius: 15px; background: #fff; }
 .sectionHead { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 16px; }
 .sectionHead h2 { margin: 0; font: 600 1.12rem var(--display); letter-spacing: -.035em; }
 .sectionHead span, .note, .optional { color: var(--slate); font-size: .875rem; }
-.drop { border: 1px dashed #739d95; border-radius: 10px; min-height: 292px; background: #edf6f3; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; }
+.drop { border: 1px dashed #739d95; border-radius: 10px; min-height: 350px; background: #edf6f3 radial-gradient(#b7d6cf 0.8px, transparent 0.8px) 0 0 / 16px 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; }
 .dragging { background: var(--foam); }
+.illustration { width: min(100%, 300px); height: auto; object-fit: contain; border-radius: 8px; }
 .drop strong { font: 600 1.15rem var(--display); margin-top: 14px; }
 .drop p { color: var(--slate); margin: 5px 0 17px; }
-.picture { position: relative; width: 48px; height: 42px; border: 2px solid var(--aegean); border-radius: 8px; overflow: hidden; }
-.picture::before { content: ''; position: absolute; top: 7px; left: 8px; width: 7px; height: 7px; border-radius: 50%; background: var(--ember); }
-.picture i { width: 41px; height: 41px; border: 2px solid var(--aegean); background: var(--foam); position: absolute; transform: rotate(45deg); left: 13px; top: 23px; }
 .settings fieldset { margin: 0; padding: 0; border: 0; min-width: 0; display: grid; gap: 11px; }
 .dimensions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .settings label { display: block; font-weight: 600; }
@@ -44,3 +42,15 @@
   .intro { display: block; margin-bottom: 28px; }
   .intro p { margin-top: 14px; }
 }
+
+.sectionHead h2, .privacy, .secondary, .primary, .zip, .files li button {
+  display: flex; align-items: center; gap: 8px;
+}
+.sectionHead h2 svg { width: 20px; height: 20px; }
+.settings { box-shadow: 0 8px 24px #0b2b3308; }
+.privacy { justify-content: center; color: var(--slate); font-size: .875rem; margin: 14px 0 0; }
+.privacy svg, .workspace button svg { width: 17px; height: 17px; flex: 0 0 auto; }
+.secondary, .primary, .zip, .files li button { justify-content: center; }
+.files li button { min-width: 36px; min-height: 36px; }
+.drop .secondary { background: var(--aegean); border-color: var(--aegean); color: var(--mist); }
+.drop .secondary:hover:not(:disabled) { background: var(--deep); }

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return <main className="shell main">
     <div className={styles.intro}><h1>Batch image<br />resizer<span>.</span></h1>
-      <p>Resize and compress a batch at once.<br />Your images stay on your device.</p></div>
+      <p>Resize, compress, and convert a whole batch. Save your settings for next time.</p></div>
     <Resizer />
   </main>;
 }
